@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import pg from 'pg';
+import { GrantsModule } from './grants/grants.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import pg from 'pg';
       host: 'host.docker.internal',
       port: 5434,
     }),
+    GrantsModule,
   ],
 })
 export class AppModule {}
