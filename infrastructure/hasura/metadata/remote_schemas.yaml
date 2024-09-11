@@ -1,0 +1,6 @@
+- name: nest-backend
+  definition:
+    url: '{{HASURA_GRAPHQL_NEST_API}}'
+    timeout_seconds: 60
+    customization: {}
+  comment: ""

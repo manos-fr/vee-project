@@ -1,0 +1,10 @@
+table:
+  name: users_grants
+  schema: public
+object_relationships:
+  - name: grant
+    using:
+      foreign_key_constraint_on: grant_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
