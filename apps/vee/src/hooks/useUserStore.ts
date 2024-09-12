@@ -7,7 +7,7 @@ const useUserStore = () => {
   const { data: userData } = useGetUsersQuery({ client: useGraphQlClient() });
 
   useMemo(() => {
-    setUserId(userData?.users[0].id ?? 2); //TODO get from db after authorization and keep it in store for example "zustand"
+    setUserId(userData?.users[2].id ?? 2); //TODO get from db after authorization and keep it in store for example "zustand"
   }, [userData?.users]);
 
   return {
