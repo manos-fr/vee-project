@@ -3,7 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import pg from 'pg';
-import { GrantsModule } from './grants/grants.module';
+import { Somes, SomesModule } from './grants/grants.module';
 
 @Module({
   imports: [
@@ -14,14 +14,18 @@ import { GrantsModule } from './grants/grants.module';
       introspection: true,
     }),
     TypeOrmModule.forRoot({
+      autoLoadEntities: true,
       type: 'postgres',
       driver: pg,
       username: 'postgres',
       password: 'jijikos',
-      host: 'host.docker.internal',
+      host: 'host.docker.internal', //for docker
+      // host: "localhost",
       port: 5434,
+      schema: 'business',
+      entities: [Somes],
     }),
-    GrantsModule,
+    SomesModule,
   ],
 })
 export class AppModule {}

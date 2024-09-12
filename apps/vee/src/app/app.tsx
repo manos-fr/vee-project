@@ -20,7 +20,7 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
-        <div className="flex pt-20 min-h-0 flex-1 gap-4 overflow-hidden h-full">
+        <div className="pt-30 min-h-screen min-w-screen flex-1 gap-4 overflow-hidden">
           <Outlet />
         </div>
       </Routes>

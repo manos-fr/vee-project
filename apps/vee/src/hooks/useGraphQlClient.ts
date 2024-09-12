@@ -24,6 +24,7 @@ export const useGraphQlClient = () => {
     uri: 'http://localhost:8083/v1/graphql',
   });
   const link = 'http://localhost:8083/v1/graphql';
+  const sl = 'http://localhost:8083/v1/graphql';
 
   const wsLink = new GraphQLWsLink(
     createClient({
@@ -40,7 +41,7 @@ export const useGraphQlClient = () => {
           },
         };
       },
-    })
+    }),
   );
 
   const splitLink = split(
@@ -52,7 +53,7 @@ export const useGraphQlClient = () => {
       );
     },
     wsLink,
-    authLink.concat(httpLink)
+    authLink.concat(httpLink),
   );
 
   const client = useMemo(
@@ -61,7 +62,7 @@ export const useGraphQlClient = () => {
         link: splitLink,
         cache: new InMemoryCache(),
       }),
-    []
+    [],
   );
   return client;
 };

@@ -18,7 +18,7 @@ import { Repository } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class Grant {
+export class Somes {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
@@ -71,7 +71,7 @@ export class Grant {
 }
 
 @InputType()
-class CreateGrantInput {
+class CreateSomeInput {
   @Field()
   name: string;
 
@@ -98,48 +98,50 @@ class CreateGrantInput {
 }
 
 @Injectable()
-export class GrantsService {
+export class SomesService {
   constructor(
-    @InjectRepository(Grant)
-    private grantsRepository: Repository<Grant>
+    @InjectRepository(Somes)
+    private somesRepository: Repository<Somes>
   ) {}
 
-  async findAll(): Promise<Grant[]> {
-    return this.grantsRepository.find();
+  async findAll(): Promise<Somes[]> {
+    return this.somesRepository.find();
   }
 
-  async findOne(id: number): Promise<Grant> {
-    return this.grantsRepository.findOne({ where: { id } });
+  async findOne(id: number): Promise<Somes> {
+    return this.somesRepository.findOne({ where: { id } });
   }
 
-  async create(createGrantInput: CreateGrantInput): Promise<Grant> {
-    const grant = this.grantsRepository.create(createGrantInput);
-    return this.grantsRepository.save(grant);
+  async create(createSomeInput: CreateSomeInput): Promise<Somes> {
+    const some = this.somesRepository.create(createSomeInput);
+    return this.somesRepository.save(some);
   }
 }
 
-@Resolver(() => Grant)
-export class GrantsResolver {
-  constructor(private readonly grantsService: GrantsService) {}
+@Resolver(() => Somes)
+export class SomesResolver {
+  constructor(private readonly somesService: SomesService) {}
 
-  @Query(() => [Grant])
+  @Query(() => [Somes])
   async somes() {
-    return this.grantsService.findAll();
+    console.log('somes');
+
+    return this.somesService.findAll();
   }
 
-  @Query(() => Grant)
+  @Query(() => Somes)
   async some(@Args('id') id: number) {
-    return this.grantsService.findOne(id);
+    return this.somesService.findOne(id);
   }
 
-  @Mutation(() => Grant)
-  async createSome(@Args('input') input: CreateGrantInput) {
-    return this.grantsService.create(input);
+  @Mutation(() => Somes)
+  async createSome(@Args('input') input: CreateSomeInput) {
+    return this.somesService.create(input);
   }
 }
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Grant])],
-  providers: [GrantsService, GrantsResolver],
+  imports: [TypeOrmModule.forFeature([Somes])],
+  providers: [SomesService, SomesResolver],
 })
-export class GrantsModule {}
+export class SomesModule {}

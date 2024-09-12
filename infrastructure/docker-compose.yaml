@@ -10,6 +10,16 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${HASURA_ADMIN_SECRET}
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: on-failure
+    depends_on:
+      - postgres
+    ports:
+      - 5051:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
   graphql-engine:
     image: hasura/graphql-engine:v2.33.0
     restart: on-failure
