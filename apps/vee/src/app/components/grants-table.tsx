@@ -1,4 +1,3 @@
-import React from 'react';
 import { StatusEnum } from '@vee-shared';
 import { formatNumber } from '../utils/utils';
 import { Heart, Eye, Award, Wallet } from 'lucide-react';

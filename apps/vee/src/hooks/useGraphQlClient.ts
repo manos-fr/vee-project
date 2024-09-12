@@ -24,7 +24,6 @@ export const useGraphQlClient = () => {
     uri: 'http://localhost:8083/v1/graphql',
   });
   const link = 'http://localhost:8083/v1/graphql';
-  const sl = 'http://localhost:8083/v1/graphql';
 
   const wsLink = new GraphQLWsLink(
     createClient({

@@ -477,7 +477,7 @@ export type Grants = {
   foundation: Scalars['String']['output'];
   icon?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  interacted_users_ids?: Maybe<Scalars['jsonb']['output']>;
+  interacted_users_ids: Scalars['jsonb']['output'];
   location: Scalars['String']['output'];
   match_date?: Maybe<Scalars['timestamptz']['output']>;
   name: Scalars['String']['output'];
@@ -2232,14 +2232,23 @@ export type GetRelevantUserGrantsQueryVariables = Exact<{
 }>;
 
 
-export type GetRelevantUserGrantsQuery = { __typename?: 'query_root', users_grants: Array<{ __typename?: 'users_grants', feedback?: string | null, relevant?: boolean | null, grant: { __typename?: 'grants', amount: any, areas: any, created_at: any, deadline?: any | null, foundation: string, id: number, location: string, match_date?: any | null, name: string, status: string, updated_at: any, icon?: string | null, interacted_users_ids?: any | null } }> };
+export type GetRelevantUserGrantsQuery = { __typename?: 'query_root', users_grants: Array<{ __typename?: 'users_grants', feedback?: string | null, relevant?: boolean | null, grant: { __typename?: 'grants', amount: any, areas: any, created_at: any, deadline?: any | null, foundation: string, id: number, location: string, match_date?: any | null, name: string, status: string, updated_at: any, icon?: string | null, interacted_users_ids: any } }> };
 
 export type GetNotInteractedGrantsQueryVariables = Exact<{
   users_ids?: InputMaybe<Scalars['jsonb']['input']>;
 }>;
 
 
-export type GetNotInteractedGrantsQuery = { __typename?: 'query_root', grants: Array<{ __typename?: 'grants', amount: any, areas: any, created_at: any, deadline?: any | null, foundation: string, icon?: string | null, id: number, location: string, match_date?: any | null, name: string, status: string, interacted_users_ids?: any | null }> };
+export type GetNotInteractedGrantsQuery = { __typename?: 'query_root', grants: Array<{ __typename?: 'grants', amount: any, areas: any, created_at: any, deadline?: any | null, foundation: string, icon?: string | null, id: number, location: string, match_date?: any | null, name: string, status: string, interacted_users_ids: any }> };
+
+export type OnSubmitMutationMutationVariables = Exact<{
+  object: Users_Grants_Insert_Input;
+  id: Scalars['Int']['input'];
+  interacted_users_ids: Scalars['jsonb']['input'];
+}>;
+
+
+export type OnSubmitMutationMutation = { __typename?: 'mutation_root', insert_users_grants_one?: { __typename?: 'users_grants', feedback?: string | null, grant_id: number, user_id: number, relevant?: boolean | null } | null, update_grants_by_pk?: { __typename?: 'grants', id: number, interacted_users_ids: any, name: string, updated_at: any } | null };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2305,9 +2314,7 @@ export type GetRelevantUserGrantsSuspenseQueryHookResult = ReturnType<typeof use
 export type GetRelevantUserGrantsQueryResult = Apollo.QueryResult<GetRelevantUserGrantsQuery, GetRelevantUserGrantsQueryVariables>;
 export const GetNotInteractedGrantsDocument = gql`
     query getNotInteractedGrants($users_ids: jsonb) {
-  grants(
-    where: {_or: [{_not: {interacted_users_ids: {_contains: $users_ids}}}, {interacted_users_ids: {_is_null: true}}]}
-  ) {
+  grants(where: {_or: [{_not: {interacted_users_ids: {_contains: $users_ids}}}]}) {
     amount
     areas
     created_at
@@ -2356,6 +2363,53 @@ export type GetNotInteractedGrantsQueryHookResult = ReturnType<typeof useGetNotI
 export type GetNotInteractedGrantsLazyQueryHookResult = ReturnType<typeof useGetNotInteractedGrantsLazyQuery>;
 export type GetNotInteractedGrantsSuspenseQueryHookResult = ReturnType<typeof useGetNotInteractedGrantsSuspenseQuery>;
 export type GetNotInteractedGrantsQueryResult = Apollo.QueryResult<GetNotInteractedGrantsQuery, GetNotInteractedGrantsQueryVariables>;
+export const OnSubmitMutationDocument = gql`
+    mutation onSubmitMutation($object: users_grants_insert_input!, $id: Int!, $interacted_users_ids: jsonb!) {
+  insert_users_grants_one(object: $object) {
+    feedback
+    grant_id
+    user_id
+    relevant
+  }
+  update_grants_by_pk(
+    pk_columns: {id: $id}
+    _append: {interacted_users_ids: $interacted_users_ids}
+  ) {
+    id
+    interacted_users_ids
+    name
+    updated_at
+  }
+}
+    `;
+export type OnSubmitMutationMutationFn = Apollo.MutationFunction<OnSubmitMutationMutation, OnSubmitMutationMutationVariables>;
+
+/**
+ * __useOnSubmitMutationMutation__
+ *
+ * To run a mutation, you first call `useOnSubmitMutationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useOnSubmitMutationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [onSubmitMutationMutation, { data, loading, error }] = useOnSubmitMutationMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *      id: // value for 'id'
+ *      interacted_users_ids: // value for 'interacted_users_ids'
+ *   },
+ * });
+ */
+export function useOnSubmitMutationMutation(baseOptions?: Apollo.MutationHookOptions<OnSubmitMutationMutation, OnSubmitMutationMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<OnSubmitMutationMutation, OnSubmitMutationMutationVariables>(OnSubmitMutationDocument, options);
+      }
+export type OnSubmitMutationMutationHookResult = ReturnType<typeof useOnSubmitMutationMutation>;
+export type OnSubmitMutationMutationResult = Apollo.MutationResult<OnSubmitMutationMutation>;
+export type OnSubmitMutationMutationOptions = Apollo.BaseMutationOptions<OnSubmitMutationMutation, OnSubmitMutationMutationVariables>;
 export const GetUsersDocument = gql`
     query getUsers {
   users {
