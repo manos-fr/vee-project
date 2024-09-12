@@ -24,9 +24,15 @@ Install packages
 
 In a tiled terminal or similar run in separate terminals:
 
-- `npm run infra`
+- `npm run infra` will run all services and the nestjs backend
 - `npm run hasura`
 - `npm start`
+
+## INFO
+
+- The nestjs backend is integrated to hasura as a remote schema so a unified graphql api is generated on hasura to have (if wanted),
+  a single url and place for all graphql queries. Can be used for external business and complex logic, on a different schema (as implemented on this repo), on a different database, for external api calls etc...
+  \*/
 
 ## Reset Infrastructure
 
@@ -41,6 +47,10 @@ In a tiled terminal or similar run in separate terminals:
 Populate db with sample data
 
 - `npm run seed`
+
+## Shared Libs
+
+- on the vee-shared libs there are some shared (to all the monorepo) types and also components for the ui
 
 ## Useful Links
 

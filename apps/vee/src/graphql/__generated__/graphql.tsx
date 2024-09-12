@@ -2250,6 +2250,11 @@ export type OnSubmitMutationMutationVariables = Exact<{
 
 export type OnSubmitMutationMutation = { __typename?: 'mutation_root', insert_users_grants_one?: { __typename?: 'users_grants', feedback?: string | null, grant_id: number, user_id: number, relevant?: boolean | null } | null, update_grants_by_pk?: { __typename?: 'grants', id: number, interacted_users_ids: any, name: string, updated_at: any } | null };
 
+export type GetAllSomesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllSomesQuery = { __typename?: 'query_root', somes: Array<{ __typename?: 'Somes', areas: Array<string>, amount: number }> };
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2410,6 +2415,46 @@ export function useOnSubmitMutationMutation(baseOptions?: Apollo.MutationHookOpt
 export type OnSubmitMutationMutationHookResult = ReturnType<typeof useOnSubmitMutationMutation>;
 export type OnSubmitMutationMutationResult = Apollo.MutationResult<OnSubmitMutationMutation>;
 export type OnSubmitMutationMutationOptions = Apollo.BaseMutationOptions<OnSubmitMutationMutation, OnSubmitMutationMutationVariables>;
+export const GetAllSomesDocument = gql`
+    query getAllSomes {
+  somes {
+    areas
+    amount
+  }
+}
+    `;
+
+/**
+ * __useGetAllSomesQuery__
+ *
+ * To run a query within a React component, call `useGetAllSomesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllSomesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllSomesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllSomesQuery(baseOptions?: Apollo.QueryHookOptions<GetAllSomesQuery, GetAllSomesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllSomesQuery, GetAllSomesQueryVariables>(GetAllSomesDocument, options);
+      }
+export function useGetAllSomesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllSomesQuery, GetAllSomesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllSomesQuery, GetAllSomesQueryVariables>(GetAllSomesDocument, options);
+        }
+export function useGetAllSomesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAllSomesQuery, GetAllSomesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAllSomesQuery, GetAllSomesQueryVariables>(GetAllSomesDocument, options);
+        }
+export type GetAllSomesQueryHookResult = ReturnType<typeof useGetAllSomesQuery>;
+export type GetAllSomesLazyQueryHookResult = ReturnType<typeof useGetAllSomesLazyQuery>;
+export type GetAllSomesSuspenseQueryHookResult = ReturnType<typeof useGetAllSomesSuspenseQuery>;
+export type GetAllSomesQueryResult = Apollo.QueryResult<GetAllSomesQuery, GetAllSomesQueryVariables>;
 export const GetUsersDocument = gql`
     query getUsers {
   users {
