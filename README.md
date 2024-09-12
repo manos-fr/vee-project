@@ -1,10 +1,58 @@
 # Vee
 
+## Prerequisites
+
+- [Node](https://nodejs.org/de/blog/announcements/v18-release-announce/)
+  - It is recommended to use [nvm](https://github.com/nvm-sh/nvm) or something similar
+- [Hasura](https://hasura.io/docs/2.0/index/)
+- [Docker](https://www.docker.com/)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- For the VSCode users, it is recommended to install the suggested plugins when you open the project the first time
+
+## Getting Started
+
+Install packages
+
+- Clone this repo
+
+- Install Hasura with the command: </br>
+  `curl -L <https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh> | bash`
+
+- `npm install`
+
+## Firing it up :fire:
+
+In a tiled terminal or similar run in separate terminals:
+
+- `npm run infra`
+- `npm run hasura`
+- `npm start`
+
+## Reset Infrastructure
+
+- `npm run reset-infra`
+
+## Generate graphql types, queries/mutations
+
+- `npm run codegen`
+
+## Sample Data
+
+Populate db with sample data
+
+- `npm run seed`
+
+## Useful Links
+
+- [Nx Documentation](https://nx.dev)
+- [Hasura Documentation](https://hasura.io/docs/2.0/index/)
+- [Practical React Query Guide (TkDodo's blog)](https://tkdodo.eu/blog/practical-react-query)
+
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
 
 ## Run tasks
 
@@ -25,7 +73,7 @@ To see all available targets to run for a project, run:
 ```sh
 npx nx show project vee
 ```
-        
+
 These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
 
 [More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
@@ -89,12 +137,13 @@ Nx Console is an editor extension that enriches your developer experience. It le
 
 Learn more:
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
+- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 - [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
 
 And join the Nx community:
+
 - [Discord](https://go.nx.dev/community)
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
