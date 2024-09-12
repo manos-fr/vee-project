@@ -24,9 +24,9 @@ Install packages
 
 In a tiled terminal or similar run in separate terminals:
 
-- `npm run infra` will run all services and the nestjs backend
+- `npm run infra` will run all services and the nestjs backend (vee-be)
 - `npm run hasura`
-- `npm start`
+- `npm start` run the ui (vee)
 
 ## INFO
 
