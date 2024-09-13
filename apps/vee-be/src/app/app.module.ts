@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { SomesModule } from './somes/somes.module';
 import pg from 'pg';
-import { Somes, SomesModule } from './grants/grants.module';
+import { Somes } from './somes/entities/somes.entity';
 
 @Module({
   imports: [

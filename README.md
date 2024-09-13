@@ -48,6 +48,10 @@ Populate db with sample data
 
 - `npm run seed`
 
+Remove image of backend (if made changes to the code)
+
+- `npm run docker-clear`
+
 ## Shared Libs
 
 - on the vee-shared libs there are some shared (to all the monorepo) types and also components for the ui
