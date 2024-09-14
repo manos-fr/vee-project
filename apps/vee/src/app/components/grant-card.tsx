@@ -24,8 +24,9 @@ const GrantCard = ({
   areas,
   id,
   refetchAll,
+  user_id,
 }: any) => {
-  const { user_id } = useUserStore();
+  // const { user_id } = useUserStore();
   const [feedbackType, setFeedbackType] = useState<'up' | 'down' | null>(null);
   const [feedbackText, setFeedbackText] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);

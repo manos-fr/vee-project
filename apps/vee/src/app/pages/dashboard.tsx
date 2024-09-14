@@ -5,15 +5,18 @@ import useGrantData from '../../hooks/useGrantData';
 import {
   Somes,
   useGetAllSomesQuery,
+  useGetUsersQuery,
 } from '../../graphql/__generated__/graphql';
 import { useGraphQlClient } from '../../hooks/useGraphQlClient';
 import { useState } from 'react';
 
 const GrantDashboard = () => {
-  const { user_id } = useUserStore();
-  const { notInteractedGrants, userGrants, refetchAll } = useGrantData(user_id);
+  // const { user_id } = useUserStore();
+  const { data: userData } = useGetUsersQuery({ client: useGraphQlClient() });
+  const { notInteractedGrants, userGrants, refetchAll } = useGrantData(
+    userData?.users[2]?.id ?? 0,
+  );
   const [somesData, setSomesData] = useState<Somes[] | undefined>(undefined);
-
   /**
   This query hits the nestjs graphql api and resolvers through the hasura endpoint.
   The nestjs backend is integrated to hasura as a remote schema so a unified graphql api is generated on hasura to have (if wanted),
@@ -34,7 +37,12 @@ const GrantDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {notInteractedGrants?.grants.map((match, index) => {
           return (
-            <GrantCard key={match.id} refetchAll={refetchAll} {...match} />
+            <GrantCard
+              key={match.id}
+              refetchAll={refetchAll}
+              user_id={userData?.users[2]?.id}
+              {...match}
+            />
           );
         })}
       </div>
