@@ -2253,7 +2253,7 @@ export type OnSubmitMutationMutation = { __typename?: 'mutation_root', insert_us
 export type GetAllSomesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllSomesQuery = { __typename?: 'query_root', somes: Array<{ __typename?: 'Somes', areas: Array<string>, amount: number }> };
+export type GetAllSomesQuery = { __typename?: 'query_root', somes: Array<{ __typename?: 'Somes', amount: number, areas: Array<string>, created_at: any, deadline?: any | null, foundation: string, id: number, location: string, match_date?: any | null, name: string, status: string, updated_at: any }> };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2418,8 +2418,17 @@ export type OnSubmitMutationMutationOptions = Apollo.BaseMutationOptions<OnSubmi
 export const GetAllSomesDocument = gql`
     query getAllSomes {
   somes {
-    areas
     amount
+    areas
+    created_at
+    deadline
+    foundation
+    id
+    location
+    match_date
+    name
+    status
+    updated_at
   }
 }
     `;
