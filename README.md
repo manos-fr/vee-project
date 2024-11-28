@@ -14,11 +14,8 @@ Users can interact with the grants by providing feedback and managing their visi
 ### Backend (BE)
 - **Framework**: Use the [NestJS](https://nestjs.com/) framework.
 - **GraphQL**: Implement the API using a schema-first approach, following best practices.
-- **Language**: Write the code in TypeScript.
-- **Persistence**: Choose any database (not a file system).
-- **Code Quality**:
-  - Organize code well.
-  - Include basic tests.
+- **Language**: TypeScript.
+- **Persistence**: Postgres
 - **Containerization**: Wrap the backend with a Docker container.
 
 ### Frontend (FE)
