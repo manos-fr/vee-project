@@ -1,5 +1,54 @@
 # Vee
 
+# Grants Dashboard Technical Requirements
+
+## Overview
+The Grants Dashboard is a platform designed to display grant opportunities and manage historical grants. The application consists of two main views:
+- **Card View**: Displays current grant opportunities.
+- **Table View**: Shows previously approved grants.
+
+Users can interact with the grants by providing feedback and managing their visibility.
+
+## Requirements
+
+### Backend (BE)
+- **Framework**: Use the [NestJS](https://nestjs.com/) framework.
+- **GraphQL**: Implement the API using a schema-first approach, following best practices.
+- **Language**: Write the code in TypeScript.
+- **Persistence**: Choose any database (not a file system).
+- **Code Quality**:
+  - Organize code well.
+  - Include basic tests.
+- **Containerization**: Wrap the backend with a Docker container.
+
+### Frontend (FE)
+- **Framework**: Use any flavor of React.js.
+- **Interactivity**:
+  - Add 👍 and 👎 buttons on the grant cards.
+  - On clicking:
+    - 👍: Allow users to submit feedback as text. Upon submission:
+      - Save the feedback.
+      - Move the grant opportunity to the **Previous Grants Table**.
+    - 👎: Allow users to submit feedback as text. Upon submission:
+      - Save the feedback.
+      - Remove the grant opportunity from the **Card View**.
+- **Design**:
+  - The exact design is not critical.
+  - Use any component library to achieve the general concept.
+
+### General Requirements
+- Ensure both BE and FE can be run locally.
+- Follow best practices for organizing state and components in the frontend.
+
+## Getting Started
+
+### Backend Setup
+1. Clone the repository.
+2. Navigate to the `backend` directory.
+3. Install dependencies:
+   ```bash
+   npm install
+
 ## Prerequisites
 
 - [Node](https://nodejs.org/de/blog/announcements/v18-release-announce/)
